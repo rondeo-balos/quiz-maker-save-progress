@@ -1,9 +1,14 @@
 <?php
 /**
  * Plugin Name:     Quiz Maker - Save Progress
+ * Plugin URI:      https://github.com/rondeo-balos/quiz-maker-save-progress
  * Description:     A plugin that Saves Quiz Maker Progress
+ * Version:         0.2.1
  * Author:          Rondeo Balos
- * Version:         1.0.1
+ * Author URI:      https://github.com/rondeo-balos/
+ * License:           GPL-2.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain:       quiz-makker-save-progress
 */
 
 include 'constants.php';
@@ -27,24 +32,31 @@ function qmrb_activate_quiz_maker_save_progress(){
 }
 
 add_action('wp_ajax_qmrb_save_progress','qmrb_save_progress');
+add_action('wp_ajax_nopriv_qmrb_save_progress','qmrb_save_progress');
 function qmrb_save_progress() {
 
     global $wpdb;
     $table_name = $wpdb->prefix.QMRB_TABLE_NAME;
-    $save_details = sanitize_text_field($_POST["save_details"]);
+    $user_id = sanitize_key($_POST["save_details"]["user_id"]);
+    $quiz_id = sanitize_text_field($_POST["save_details"]["quiz_id"]);
+    $quiz_link = esc_url_raw($_POST["save_details"]["quiz_link"]);
+    $quiz_title = sanitize_text_field($_POST["save_details"]["quiz_title"]);
+    $last_step = sanitize_text_field($_POST["save_details"]["last_step"]);
+    $answer_ids = sanitize_text_field($_POST["save_details"]["answer_ids"]);
     $data = array(
-        'user_id'=>$save_details['user_id'],
-        'quiz_id'=>$save_details['quiz_id'],
-        'quiz_link'=>$save_details['quiz_link'],
-        'quiz_title'=>$save_details['quiz_title'],
-        'last_step'=>$save_details['last_step'],
-        'answer_ids'=>$save_details['answer_ids']
+        'user_id'=>$user_id,
+        'quiz_id'=>$quiz_id,
+        'quiz_link'=>$quiz_link,
+        'quiz_title'=>$quiz_title,
+        'last_step'=>$last_step,
+        'answer_ids'=>$answer_ids
     );
-    $fields = '`' . implode('`,`' array_keys($data)) . '`';
-    $format = "'" . implode("', '") . "'";
-    $sql = "INSERT INTO `$table_name` ($fields) VALUES ($format) ON DUPLICATE KEY UPDATE last_step = '$save_details[last_step]', answer_ids = '$save_details[answer_ids]'";
+    //wp_die();
+    $fields = '`' . implode('`,`', array_keys($data)) . '`';
+    $format = "'" . implode("', '", $data) . "'";
+    $sql = "INSERT INTO `$table_name` ($fields) VALUES ($format) ON DUPLICATE KEY UPDATE last_step = '$last_step', answer_ids = '$answer_ids'";
     $wpdb->query($sql);
-
+    wp_die();
 }
 
 // this action may be deprecated in the future
@@ -62,6 +74,7 @@ function qmrb_load_progress(){
 }*/
 
 add_action('wp_ajax_qmrb_check_progress','qmrb_check_progress');
+add_action('wp_ajax_nopriv_qmrb_check_progress','qmrb_check_progress');
 function qmrb_check_progress(){
     global $wpdb;
     $table_name = $wpdb->prefix.QMRB_TABLE_NAME;

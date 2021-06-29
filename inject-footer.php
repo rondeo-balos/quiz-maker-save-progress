@@ -54,6 +54,7 @@ function qmrb_inject_code(){
                                     },
                                     success: function(response) {
                                         var load = JSON.parse(response);
+                                        if(load == null) return;
                                         $('.ays_next.start_button.action-button').val('Resume');
                                         $('.ays_next.start_button.action-button').click(function(){
                                             setTimeout(function(){

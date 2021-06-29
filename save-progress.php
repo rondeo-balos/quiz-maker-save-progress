@@ -68,9 +68,10 @@ function qmrb_save_progress_shortcode(){
                         action: 'qmrb_save_progress'
                     },
                     error: function(error) {
-                        alert("Progress Save Failed" + error);
+                        alert("Progress Save Failed" + error.toString());
                     },
                     success: function(response) {
+                        console.log(response);
                         document.location = '';
                     }
                 });
