@@ -59,20 +59,6 @@ function qmrb_save_progress() {
     wp_die();
 }
 
-// this action may be deprecated in the future
-// This is already deprecated
-/*add_action('wp_ajax_qmrb_load_progress','qmrb_load_progress');
-function qmrb_load_progress(){
-    global $wpdb;
-    $table_name = $wpdb->prefix.QMRB_TABLE_NAME;
-    
-    $sql = "SELECT * FROM $table_name WHERE ID = $_POST[ID]";
-    //please check if there's data before encoding
-    $load = $wpdb->get_row($sql);
-    echo json_encode($load);
-    wp_die();
-}*/
-
 add_action('wp_ajax_qmrb_check_progress','qmrb_check_progress');
 add_action('wp_ajax_nopriv_qmrb_check_progress','qmrb_check_progress');
 function qmrb_check_progress(){
