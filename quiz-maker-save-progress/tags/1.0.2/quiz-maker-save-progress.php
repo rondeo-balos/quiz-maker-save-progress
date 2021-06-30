@@ -3,7 +3,7 @@
  * Plugin Name:     Quiz Maker - Save Progress
  * Plugin URI:      https://github.com/rondeo-balos/quiz-maker-save-progress
  * Description:     A plugin that Saves Quiz Maker Progress
- * Version:         1.0.0
+ * Version:         1.0.2
  * Author:          Rondeo Balos
  * Author URI:      https://github.com/rondeo-balos/
  * License:           GPL-3.0+
@@ -40,7 +40,7 @@ register_activation_hook(__FILE__, function () {
 add_action('admin_init', function () {
     if (get_option('qmrb_do_activation_redirect', false)) {
         delete_option('qmrb_do_activation_redirect');
-        exit( wp_redirect("options-general.php?page=quiz-maker-save-progress-settings") );
+        exit( wp_redirect("options-general.php?page=" . QMRB_PLUGIN_NAME) );
     }
 });
 

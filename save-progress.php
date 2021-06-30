@@ -4,6 +4,8 @@ add_shortcode('quiz-maker-save-progress','qmrb_save_progress_shortcode');
 function qmrb_save_progress_shortcode(){
     ob_start();
     $current_user = get_current_user_id();
+    $quiz_maker_save_progress_settings_options = get_option( 'quiz_maker_save_progress_settings_option_name' );
+    $url_that_redirects_after_saving_quiz_0 = $quiz_maker_save_progress_settings_options['url_that_redirects_after_saving_quiz_0'];
     ?>
     <center>
         <form id="save_progress" action="#" method="POST" data-url="<?php echo admin_url('admin-ajax.php'); ?>" enctype="multipart/form-data">
@@ -72,7 +74,7 @@ function qmrb_save_progress_shortcode(){
                     },
                     success: function(response) {
                         console.log(response);
-                        document.location = '';
+                        document.location = '<?php echo esc_html($url_that_redirects_after_saving_quiz_0) ?>';
                     }
                 });
             });
