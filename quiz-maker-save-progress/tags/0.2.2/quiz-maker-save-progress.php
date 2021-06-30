@@ -3,11 +3,11 @@
  * Plugin Name:     Quiz Maker - Save Progress
  * Plugin URI:      https://github.com/rondeo-balos/quiz-maker-save-progress
  * Description:     A plugin that Saves Quiz Maker Progress
- * Version:         1.0.0
+ * Version:         0.2.2
  * Author:          Rondeo Balos
  * Author URI:      https://github.com/rondeo-balos/
- * License:           GPL-3.0+
- * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
+ * License:           GPL-2.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       quiz-makker-save-progress
 */
 
@@ -15,10 +15,8 @@ include 'constants.php';
 include 'save-progress.php';
 include 'list-saves.php';
 include 'inject-footer.php';
-include 'options-page.php';
 
-//add_action('plugins_loaded','qmrb_activate_quiz_maker_save_progress');
-register_activation_hook(__FILE__, 'qmrb_activate_quiz_maker_save_progress');
+add_action('plugins_loaded','qmrb_activate_quiz_maker_save_progress');
 function qmrb_activate_quiz_maker_save_progress(){
     global $wpdb;
     $sql = "CREATE TABLE IF NOT EXISTS `wordpress`.`wp_quiz_maker_saved_progress`(
@@ -32,17 +30,6 @@ function qmrb_activate_quiz_maker_save_progress(){
         PRIMARY KEY (`ID`), UNIQUE (`quiz_id`)) ENGINE = InnoDB;";
     $wpdb->query($sql);
 }
-
-register_activation_hook(__FILE__, function () {
-    add_option('qmrb_do_activation_redirect', true);
-});
-
-add_action('admin_init', function () {
-    if (get_option('qmrb_do_activation_redirect', false)) {
-        delete_option('qmrb_do_activation_redirect');
-        exit( wp_redirect("options-general.php?page=quiz-maker-save-progress-settings") );
-    }
-});
 
 add_action('wp_ajax_qmrb_save_progress','qmrb_save_progress');
 add_action('wp_ajax_nopriv_qmrb_save_progress','qmrb_save_progress');

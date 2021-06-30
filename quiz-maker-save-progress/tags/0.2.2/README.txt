@@ -2,11 +2,11 @@
 Contributors: rondeo-balos
 Donate link: 
 Tags:  quiz maker, exam, quiz, test, questionnaire, save progress
-Requires at least: 5.0
-Tested up to: 1.0.0
-Stable tag: 1.0.0
-License: GPLv3 or later
-License URI: http://www.gnu.org/licenses/gpl-3.0.txt
+Requires at least: 4.0
+Tested up to: 0.2.2
+Stable tag: 0.2.2
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 A plugin that Saves AYS Quiz Maker Progress
 
@@ -31,11 +31,6 @@ For adding the "Finish Button" use the shortcode [quiz-maker-save-progress]
 3. A List of your unfinished quizes
 
 == Changelog ==
-
-patch notes v1.0.0
- 1. Adding Options Page
- 2. Fixed known bugs
- 3. Redirects after installation
 
 patch notes v0.2.2
  1. Fixed bugs
