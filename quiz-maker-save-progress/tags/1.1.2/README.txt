@@ -1,10 +1,10 @@
 === Quiz Maker - Save Progress ===
-Contributors: rondeo-balos
-Donate link: 
+Contributors: rondeo-balos, mariagugma30
+Donate link: https://paypal.me/rondeox23
 Tags:  quiz maker, exam, quiz, test, questionnaire, save progress
 Requires at least: 5.0
-Tested up to: 1.0.2
-Stable tag: 1.0.2
+Tested up to: 5.8.0
+Stable tag: 5.8.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -12,7 +12,7 @@ A plugin that Saves AYS Quiz Maker Progress
 
 == Description ==
 
-### A plugin that Saves AYS Quiz Maker Progress
+### A Quiz Maker plugin/addon that Saves AYS Quiz Maker Progress
 
 For the list of unfinished quiz use the shortcode [quiz-maker-list-saves]
 
@@ -31,6 +31,9 @@ For adding the "Finish Button" use the shortcode [quiz-maker-save-progress]
 3. A List of your unfinished quizes
 
 == Changelog ==
+
+v1.1.1, v1.1.2
+1. Fixed bugs on database creation
 
 v1.0.1
  1. Fixed Redirection after saving quiz

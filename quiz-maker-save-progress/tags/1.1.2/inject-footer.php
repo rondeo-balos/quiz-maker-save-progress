@@ -3,7 +3,7 @@
 add_action("wp_footer", "qmrb_inject_code");
 function qmrb_inject_code(){
     $current_user = get_current_user_id();
-    echo $current_user;
+    //echo $current_user;
     $ajax_url = admin_url('admin-ajax.php');
     ?>
     <script>
